@@ -1,0 +1,58 @@
+%%
+function soh =soh_fcn(soc)
+n=3500;
+[xb,yb]=stairs(soc);
+ds=diff(yb);
+time=0:1e-03:600;
+dt=diff(time);
+c=0;
+u=0;
+d=0;
+if (ds/dt>0 && soc>80)
+    u=1;
+    if d==1
+        c=c+1;
+        u=0;
+    end
+    d=0;
+elseif ds/dt<0 && soc<20
+    d=1;
+    if u==1
+        c=c+1;
+        d=0;
+    end
+    u=0;
+end
+soh=(c/n)*100;
+end
+
+%%
+
+function [Iavg,wavg]= avg_fcn(I,w)
+Iavg=0;
+wavg=0;
+while(1) 
+    for i=1:180
+        Iav=((Iavg*(i-1))+I)/i;
+        wav=((wavg*(i-1))+w)/i;
+        pause(1);
+    end
+    i=1;
+    Iavg=Iav;
+    wavg=wav;
+end   
+end
+
+%%
+
+function R = range_fcn(Iavg,S,wavg)
+while (1)
+    t=S/Iavg;
+    rad=0.35;
+    V=rad*wavg;
+    R=t*V;
+    pause(180);
+end
+end
+
+
