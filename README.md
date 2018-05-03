@@ -9,3 +9,4 @@ Monitoring system:
 a. V, I, T monitoring
 b. Functions to estimate range and health of battery
 c. Fault simulation and tripping
+d. Dashboard GUI
